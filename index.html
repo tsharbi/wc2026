@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#071526" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>كأس العالم 2026 — مباريات اليوم</title>
+<style>
+:root{
+  --bg0:#05101f;--bg1:#071b31;--bg2:#0c2440;--card:#0f2138cc;--card2:#142b46;
+  --line:#26466a;--text:#eef7ff;--muted:#9db2c7;--gold:#e9be5a;--gold2:#ffe39b;
+  --blue:#4fb5ff;--green:#27d08f;--red:#ff5d6c;--white:#ffffff;--shadow:0 18px 50px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg0);color:var(--text)}
+body{min-height:100svh;overflow-x:hidden}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(79,181,255,.24), transparent 55%),
+    radial-gradient(800px 450px at 5% 0%, rgba(233,190,90,.18), transparent 50%),
+    linear-gradient(160deg,var(--bg0),var(--bg1) 48%,var(--bg2));
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.22;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(to bottom,black,transparent 72%);
+}
+.app{min-height:100svh;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 86px);max-width:720px;margin:0 auto}
+.hero{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.11);border-radius:30px;padding:22px 18px 18px;background:linear-gradient(135deg,rgba(13,45,78,.94),rgba(6,25,45,.82));box-shadow:var(--shadow)}
+.hero:before{content:"";position:absolute;inset:-80px -100px auto auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(79,181,255,.38),transparent 64%)}
+.hero:after{content:"";position:absolute;left:-70px;bottom:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(233,190,90,.22),transparent 66%)}
+.toprow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:56px;height:56px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#162034;font-size:30px;box-shadow:0 12px 28px rgba(233,190,90,.26)}
+h1{margin:0;font-size:25px;line-height:1.15;font-weight:900;letter-spacing:-.5px}
+.subtitle{margin-top:5px;color:var(--muted);font-size:13px}
+.clock{min-width:86px;text-align:center;padding:9px 10px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+.clock b{display:block;color:var(--gold2);font-size:17px}.clock span{font-size:11px;color:var(--muted)}
+.heroStats{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.stat{padding:11px 8px;border-radius:18px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.09);text-align:center}
+.stat b{display:block;color:#fff;font-size:18px}.stat span{display:block;margin-top:2px;font-size:11px;color:var(--muted)}
+.panel{margin-top:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:12px;backdrop-filter:blur(18px)}
+.datebar{display:flex;gap:9px;overflow:auto;scrollbar-width:none;padding-bottom:2px}.datebar::-webkit-scrollbar{display:none}
+.daychip{min-width:76px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.06);color:var(--text);border-radius:18px;padding:10px 8px;text-align:center;font-weight:800}
+.daychip small{display:block;color:var(--muted);font-size:11px;font-weight:700;margin-top:2px}
+.daychip.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#102033;box-shadow:0 10px 24px rgba(233,190,90,.2)}
+.daychip.active small{color:#24364b}
+.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.selectDate,.ghostBtn,.primaryBtn,.input{width:100%;min-height:46px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:var(--text);font:inherit;font-weight:800;padding:0 12px}
+.selectDate{direction:ltr;color-scheme:dark;text-align:center}
+.primaryBtn{background:linear-gradient(135deg,#2e8cff,#4fb5ff);border:none;color:#fff;box-shadow:0 12px 28px rgba(79,181,255,.22)}
+.ghostBtn{display:grid;place-items:center;text-decoration:none}
+.sectionTitle{display:flex;align-items:end;justify-content:space-between;margin:18px 2px 10px}
+.sectionTitle h2{margin:0;font-size:20px}.sectionTitle p{margin:0;color:var(--muted);font-size:12px}
+.matchList{display:grid;gap:12px}
+.matchCard{position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(180deg,rgba(21,44,72,.96),rgba(12,27,47,.96));border:1px solid rgba(255,255,255,.1);box-shadow:0 16px 38px rgba(0,0,0,.28)}
+.matchCard.arab{border-color:rgba(233,190,90,.36)}
+.matchCard.live{border-color:rgba(39,208,143,.52);box-shadow:0 0 0 1px rgba(39,208,143,.12),0 16px 38px rgba(0,0,0,.28)}
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.12)}
+.tag{display:inline-flex;align-items:center;gap:6px;max-width:66%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:12px;font-weight:800}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-size:12px;font-weight:900;color:var(--gold2)}
+.badge.live{background:rgba(39,208,143,.15);color:#8effd0}.badge.done{background:rgba(255,255,255,.08);color:#c4d2e2}.badge.soon{background:rgba(79,181,255,.15);color:#a9dcff}
+.teams{display:grid;grid-template-columns:1fr 74px 1fr;align-items:center;padding:16px 13px 13px;gap:4px}
+.team{display:grid;place-items:center;text-align:center;min-width:0}
+.flag{font-size:36px;line-height:1;filter:drop-shadow(0 6px 10px rgba(0,0,0,.22))}
+.name{margin-top:8px;font-size:15px;font-weight:900;line-height:1.25}
+.note{margin-top:6px;font-size:10px;color:var(--gold2);font-weight:900}
+.center{display:grid;place-items:center;text-align:center}
+.vs{width:54px;height:54px;border-radius:19px;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:12px;font-weight:900}
+.score{font-size:24px;font-weight:950;color:#fff;letter-spacing:1px}
+.venue{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:700;padding:0 12px 14px}
+.venue strong{color:#dfeeff}
+.empty{padding:22px;border:1px dashed rgba(255,255,255,.16);border-radius:24px;background:rgba(255,255,255,.05);text-align:center;color:var(--muted);line-height:1.8}
+.liveBox{border-radius:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:14px;margin-top:12px;color:var(--muted);line-height:1.7}
+.liveHeader{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:12px}
+.pulse{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(39,208,143,.8);animation:pulse 1.7s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(39,208,143,0)}100%{box-shadow:0 0 0 0 rgba(39,208,143,0)}}
+.tabs{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 12px);transform:translateX(-50%);z-index:20;width:min(680px,calc(100% - 24px));display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px;border-radius:26px;background:rgba(7,18,32,.76);border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 55px rgba(0,0,0,.45);backdrop-filter:blur(20px)}
+.tab{border:0;border-radius:19px;background:transparent;color:var(--muted);font:inherit;font-size:12px;font-weight:900;padding:9px 4px;display:grid;gap:3px;place-items:center}
+.tab i{font-style:normal;font-size:19px}.tab.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#11243d}
+.view{display:none}.view.active{display:block}
+.formGrid{display:grid;gap:10px}
+.label{font-size:12px;color:var(--muted);font-weight:800;margin:12px 4px 6px}
+.input{min-height:50px;direction:ltr;text-align:left;font-weight:700}
+.help{font-size:12px;color:var(--muted);line-height:1.7;margin:10px 3px}
+.apiStatus{padding:12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:13px;line-height:1.7}
+.loader{display:inline-block;animation:spin .9s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+@media (min-width:640px){.teams{grid-template-columns:1fr 90px 1fr}.flag{font-size:44px}.name{font-size:17px}.vs{width:62px;height:62px}.score{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="toprow">
+      <div class="brand">
+        <div class="logo">🏆</div>
+        <div>
+          <h1>كأس العالم 2026</h1>
+          <div class="subtitle">مباريات اليوم · توقيت مكة</div>
+        </div>
+      </div>
+      <div class="clock"><b id="clockText">--:--</b><span>Asia/Riyadh</span></div>
+    </div>
+    <div class="heroStats">
+      <div class="stat"><b id="todayCount">0</b><span>مباريات اليوم</span></div>
+      <div class="stat"><b>72</b><span>مباراة مجموعات</span></div>
+      <div class="stat"><b>8</b><span>منتخبات عربية</span></div>
+    </div>
+  </header>
+
+  <section class="panel" id="datePanel">
+    <div class="datebar" id="datebar"></div>
+    <div class="toolbar">
+      <input class="selectDate" id="datePicker" type="date" />
+      <button class="primaryBtn" onclick="goToday()">اليوم بتوقيت مكة</button>
+    </div>
+  </section>
+
+  <main>
+    <section id="view-today" class="view active">
+      <div class="sectionTitle">
+        <h2 id="todayTitle">مباريات اليوم</h2>
+        <p id="todaySub">—</p>
+      </div>
+      <div id="todayList" class="matchList"></div>
+      <div id="nextBlock"></div>
+    </section>
+
+    <section id="view-schedule" class="view">
+      <div class="sectionTitle">
+        <h2>كل جدول المجموعات</h2>
+        <p>من الملف المرفق</p>
+      </div>
+      <div id="scheduleList" class="matchList"></div>
+    </section>
+
+    <section id="view-live" class="view">
+      <div class="sectionTitle">
+        <h2>النتائج المباشرة</h2>
+        <p>API اختياري</p>
+      </div>
+      <button class="primaryBtn" onclick="refreshLive()">تحديث النتائج الآن</button>
+      <div id="liveBox" class="liveBox">
+        النتائج المباشرة تحتاج إدخال رابط الـAPI والمفتاح من تبويب الإعدادات. لن تظهر رسالة خطأ مزعجة إذا لم يتم تفعيلها.
+      </div>
+    </section>
+
+    <section id="view-settings" class="view">
+      <div class="sectionTitle">
+        <h2>الإعدادات</h2>
+        <p>Live Scores API</p>
+      </div>
+      <div class="apiStatus" id="apiStatus"></div>
+      <div class="label">API Base URL</div>
+      <input class="input" id="apiBase" placeholder="https://example.com" />
+      <div class="label">API Key</div>
+      <input class="input" id="apiKey" placeholder="YOUR_API_KEY" />
+      <div class="toolbar">
+        <button class="primaryBtn" onclick="saveApi()">حفظ الإعدادات</button>
+        <button class="ghostBtn" onclick="clearApi()">مسح</button>
+      </div>
+      <div class="help">
+        يستخدم الملف endpoints التي أرسلتها: <b>/livescores</b> و <b>/fixtures</b>.  
+        إذا فتحت الملف مباشرة من الجوال، لازم تضع رابط API كامل يدعم CORS. بدون API سيعمل الجدول المحلي فقط بدون نتائج حية.
+      </div>
+    </section>
+  </main>
+</div>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showView('today',this)"><i>📅</i>اليوم</button>
+  <button class="tab" onclick="showView('schedule',this)"><i>📋</i>الجدول</button>
+  <button class="tab" onclick="showView('live',this)"><i>🔴</i>مباشر</button>
+  <button class="tab" onclick="showView('settings',this)"><i>⚙️</i>إعدادات</button>
+</nav>
+
+<script>
+const LOCAL_MATCHES = [{"id":1,"date":"2026-06-11","time":"22:00","displayTime":"10:00 مساءً","group":"A","round":"الجولة الأولى","stage":"دور المجموعات","team1":"المكسيك","flag1":"🇲🇽","team2":"جنوب أفريقيا","flag2":"🇿🇦","city":"مكسيكو سيتي","stadium":"ملعب أزتيكا","country":"المكسيك","arab":false,"host":true},{"id":2,"date":"2026-06-12","time":"05:00","displayTime":"5:00 صباحاً","group":"A","round":"الجولة الأولى","stage":"دور المجموعات","team1":"كوريا الجنوبية","flag1":"🇰🇷","team2":"التشيك","flag2":"🇨🇿","city":"غوادالاخارا","stadium":"ملعب آكرون","country":"المكسيك","arab":false,"host":false},{"id":3,"date":"2026-06-12","time":"22:00","displayTime":"10:00 مساءً","group":"B","round":"الجولة الأولى","stage":"دور المجموعات","team1":"كندا","flag1":"🇨🇦","team2":"البوسنة والهرسك","flag2":"🇧🇦","city":"تورونتو","stadium":"ملعب بي إم أو فيلد","country":"كندا","arab":false,"host":true},{"id":4,"date":"2026-06-13","time":"04:00","displayTime":"4:00 صباحاً","group":"D","round":"الجولة الأولى","stage":"دور المجموعات","team1":"الولايات المتحدة","flag1":"🇺🇸","team2":"الباراغواي","flag2":"🇵🇾","city":"إنغلوود","stadium":"ملعب صوفي","country":"أمريكا","arab":false,"host":true},{"id":5,"date":"2026-06-13","time":"22:00","displayTime":"10:00 مساءً","group":"B","round":"الجولة الأولى","stage":"دور المجموعات","team1":"قطر","flag1":"🇶🇦","team2":"سويسرا","flag2":"🇨🇭","city":"سانتا كلارا","stadium":"ملعب ليفاي","country":"أمريكا","arab":true,"host":false},{"id":6,"date":"2026-06-14","time":"01:00","displayTime":"1:00 صباحاً","group":"C","round":"الجولة الأولى","stage":"دور المجموعات","team1":"البرازيل","flag1":"🇧🇷","team2":"المغرب","flag2":"🇲🇦","city":"نيوجيرسي / شرق راذرفورد","stadium":"ملعب ميتلايف","country":"أمريكا","arab":true,"host":false},{"id":7,"date":"2026-06-14","time":"04:00","displayTime":"4:00 صباحاً","group":"C","round":"الجولة الأولى","stage":"دور المجموعات","team1":"هايتي","flag1":"🇭🇹","team2":"اسكتلندا","flag2":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","city":"فوكسبورو","stadium":"ملعب جيليت","country":"أمريكا","arab":false,"host":false},{"id":8,"date":"2026-06-14","time":"07:00","displayTime":"7:00 صباحاً","group":"D","round":"الجولة الأولى","stage":"دور المجموعات","team1":"أستراليا","flag1":"🇦🇺","team2":"تركيا","flag2":"🇹🇷","city":"فانكوفر","stadium":"ملعب بي سي بليس","country":"كندا","arab":false,"host":false},{"id":9,"date":"2026-06-14","time":"20:00","displayTime":"8:00 مساءً","group":"E","round":"الجولة الأولى","stage":"دور المجموعات","team1":"ألمانيا","flag1":"🇩🇪","team2":"كوراساو","flag2":"🇨🇼","city":"هيوستن","stadium":"ملعب إن آر جي","country":"أمريكا","arab":false,"host":false},{"id":10,"date":"2026-06-14","time":"23:00","displayTime":"11:00 مساءً","group":"F","round":"الجولة الأولى","stage":"دور المجموعات","team1":"هولندا","flag1":"🇳🇱","team2":"اليابان","flag2":"🇯🇵","city":"أرلينغتون","stadium":"ملعب إيه تي آند تي","country":"أمريكا","arab":false,"host":false},{"id":11,"date":"2026-06-15","time":"02:00","displayTime":"2:00 صباحاً","group":"E","round":"الجولة الأولى","stage":"دور المجموعات","team1":"كوت ديفوار","flag1":"🇨🇮","team2":"الإكوادور","flag2":"🇪🇨","city":"فيلادلفيا","stadium":"ملعب لينكولن فاينانشال فيلد","country":"أمريكا","arab":false,"host":false},{"id":12,"date":"2026-06-15","time":"05:00","displayTime":"5:00 صباحاً","group":"F","round":"الجولة الأولى","stage":"دور المجموعات","team1":"تونس","flag1":"🇹🇳","team2":"السويد","flag2":"🇸🇪","city":"مونتيري","stadium":"ملعب بي بي في إيه","country":"المكسيك","arab":true,"host":false},{"id":13,"date":"2026-06-15","time":"19:00","displayTime":"7:00 مساءً","group":"H","round":"الجولة الأولى","stage":"دور المجموعات","team1":"إسبانيا","flag1":"🇪🇸","team2":"الرأس الأخضر","flag2":"🇨🇻","city":"أتلانتا","stadium":"ملعب مرسيدس بنز","country":"أمريكا","arab":false,"host":false},{"id":14,"date":"2026-06-15","time":"22:00","displayTime":"10:00 مساءً","group":"G","round":"الجولة الأولى","stage":"دور المجموعات","team1":"بلجيكا","flag1":"🇧🇪","team2":"مصر","flag2":"🇪🇬","city":"سياتل","stadium":"ملعب لومن فيلد","country":"أمريكا","arab":true,"host":false},{"id":15,"date":"2026-06-16","time":"01:00","displayTime":"1:00 صباحاً","group":"H","round":"الجولة الأولى","stage":"دور المجموعات","team1":"السعودية","flag1":"🇸🇦","team2":"الأوروغواي","flag2":"🇺🇾","city":"ميامي","stadium":"ملعب هارد روك","country":"أمريكا","arab":true,"host":false},{"id":16,"date":"2026-06-16","time":"04:00","displayTime":"4:00 صباحاً","group":"G","round":"الجولة الأولى","stage":"دور المجموعات","team1":"إيران","flag1":"🇮🇷","team2":"نيوزيلندا","flag2":"🇳🇿","city":"إنغلوود","stadium":"ملعب صوفي","country":"أمريكا","arab":false,"host":false},{"id":17,"date":"2026-06-16","time":"22:00","displayTime":"10:00 مساءً","group":"I","round":"الجولة الأولى","stage":"دور المجموعات","team1":"فرنسا","flag1":"🇫🇷","team2":"السنغال","flag2":"🇸🇳","city":"نيوجيرسي / شرق راذرفورد","stadium":"ملعب ميتلايف","country":"أمريكا","arab":false,"host":false},{"id":18,"date":"2026-06-17","time":"01:00","displayTime":"1:00 صباحاً","group":"I","round":"الجولة الأولى","stage":"دور المجموعات","team1":"العراق","flag1":"🇮🇶","team2":"النرويج","flag2":"🇳🇴","city":"فوكسبورو","stadium":"ملعب جيليت","country":"أمريكا","arab":true,"host":false},{"id":19,"date":"2026-06-17","time":"04:00","displayTime":"4:00 صباحاً","group":"J","round":"الجولة الأولى","stage":"دور المجموعات","team1":"الأرجنتين","flag1":"🇦🇷","team2":"الجزائر","flag2":"🇩🇿","city":"كانساس سيتي","stadium":"ملعب أروهيد","country":"أمريكا","arab":true,"host":false},{"id":20,"date":"2026-06-17","time":"07:00","displayTime":"7:00 صباحاً","group":"J","round":"الجولة الأولى","stage":"دور المجموعات","team1":"الأردن","flag1":"🇯🇴","team2":"النمسا","flag2":"🇦🇹","city":"سانتا كلارا","stadium":"ملعب ليفاي","country":"أمريكا","arab":true,"host":false},{"id":21,"date":"2026-06-17","time":"20:00","displayTime":"8:00 مساءً","group":"K","round":"الجولة الأولى","stage":"دور المجموعات","team1":"البرتغال","flag1":"🇵🇹","team2":"الكونغو الديمقراطية","flag2":"🇨🇩","city":"هيوستن","stadium":"ملعب إن آر جي","country":"أمريكا","arab":false,"host":false},{"id":22,"date":"2026-06-17","time":"23:00","displayTime":"11:00 مساءً","group":"L","round":"الجولة الأولى","stage":"دور المجموعات","team1":"إنجلترا","flag1":"🏴","team2":"كرواتيا","flag2":"🇭🇷","city":"أرلينغتون","stadium":"ملعب إيه تي آند تي","country":"أمريكا","arab":false,"host":false},{"id":23,"date":"2026-06-18","time":"02:00","displayTime":"2:00 صباحاً","group":"L","round":"الجولة الأولى","stage":"دور المجموعات","team1":"غانا","flag1":"🇬🇭","team2":"بنما","flag2":"🇵🇦","city":"تورونتو","stadium":"ملعب بي إم أو فيلد","country":"كندا","arab":false,"host":false},{"id":24,"date":"2026-06-18","time":"05:00","displayTime":"5:00 صباحاً","group":"K","round":"الجولة الأولى","stage":"دور المجموعات","team1":"أوزبكستان","flag1":"🇺🇿","team2":"كولومبيا","flag2":"🇨🇴","city":"مكسيكو سيتي","stadium":"ملعب أزتيكا","country":"المكسيك","arab":false,"host":false},{"id":25,"date":"2026-06-18","time":"19:00","displayTime":"7:00 مساءً","group":"A","round":"الجولة الثانية","stage":"دور المجموعات","team1":"التشيك","flag1":"🇨🇿","team2":"جنوب أفريقيا","flag2":"🇿🇦","city":"أتلانتا","stadium":"ملعب مرسيدس بنز","country":"أمريكا","arab":false,"host":false},{"id":26,"date":"2026-06-18","time":"22:00","displayTime":"10:00 مساءً","group":"B","round":"الجولة الثانية","stage":"دور المجموعات","team1":"سويسرا","flag1":"🇨🇭","team2":"البوسنة والهرسك","flag2":"🇧🇦","city":"إنغلوود","stadium":"ملعب صوفي","country":"أمريكا","arab":false,"host":false},{"id":27,"date":"2026-06-19","time":"01:00","displayTime":"1:00 صباحاً","group":"B","round":"الجولة الثانية","stage":"دور المجموعات","team1":"كندا","flag1":"🇨🇦","team2":"قطر","flag2":"🇶🇦","city":"فانكوفر","stadium":"ملعب بي سي بليس","country":"كندا","arab":true,"host":true},{"id":28,"date":"2026-06-19","time":"04:00","displayTime":"4:00 صباحاً","group":"A","round":"الجولة الثانية","stage":"دور المجموعات","team1":"المكسيك","flag1":"🇲🇽","team2":"كوريا الجنوبية","flag2":"🇰🇷","city":"غوادالاخارا","stadium":"ملعب آكرون","country":"المكسيك","arab":false,"host":true},{"id":29,"date":"2026-06-19","time":"22:00","displayTime":"10:00 مساءً","group":"D","round":"الجولة الثانية","stage":"دور المجموعات","team1":"الولايات المتحدة","flag1":"🇺🇸","team2":"أستراليا","flag2":"🇦🇺","city":"سياتل","stadium":"ملعب لومن فيلد","country":"أمريكا","arab":false,"host":true},{"id":30,"date":"2026-06-20","time":"01:00","displayTime":"1:00 صباحاً","group":"C","round":"الجولة الثانية","stage":"دور المجموعات","team1":"المغرب","flag1":"🇲🇦","team2":"اسكتلندا","flag2":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","city":"فوكسبورو","stadium":"ملعب جيليت","country":"أمريكا","arab":true,"host":false},{"id":31,"date":"2026-06-20","time":"03:30","displayTime":"3:30 صباحاً","group":"C","round":"الجولة الثانية","stage":"دور المجموعات","team1":"البرازيل","flag1":"🇧🇷","team2":"هايتي","flag2":"🇭🇹","city":"فيلادلفيا","stadium":"ملعب لينكولن فاينانشال فيلد","country":"أمريكا","arab":false,"host":false},{"id":32,"date":"2026-06-20","time":"06:00","displayTime":"6:00 صباحاً","group":"D","round":"الجولة الثانية","stage":"دور المجموعات","team1":"تركيا","flag1":"🇹🇷","team2":"الباراغواي","flag2":"🇵🇾","city":"سانتا كلارا","stadium":"ملعب ليفاي","country":"أمريكا","arab":false,"host":false},{"id":33,"date":"2026-06-20","time":"20:00","displayTime":"8:00 مساءً","group":"F","round":"الجولة الثانية","stage":"دور المجموعات","team1":"هولندا","flag1":"🇳🇱","team2":"السويد","flag2":"🇸🇪","city":"هيوستن","stadium":"ملعب إن آر جي","country":"أمريكا","arab":false,"host":false},{"id":34,"date":"2026-06-20","time":"23:00","displayTime":"11:00 مساءً","group":"E","round":"الجولة الثانية","stage":"دور المجموعات","team1":"ألمانيا","flag1":"🇩🇪","team2":"كوت ديفوار","flag2":"🇨🇮","city":"تورونتو","stadium":"ملعب بي إم أو فيلد","country":"كندا","arab":false,"host":false},{"id":35,"date":"2026-06-21","time":"03:00","displayTime":"3:00 صباحاً","group":"E","round":"الجولة الثانية","stage":"دور المجموعات","team1":"الإكوادور","flag1":"🇪🇨","team2":"كوراساو","flag2":"🇨🇼","city":"كانساس سيتي","stadium":"ملعب أروهيد","country":"أمريكا","arab":false,"host":false},{"id":36,"date":"2026-06-21","time":"07:00","displayTime":"7:00 صباحاً","group":"F","round":"الجولة الثانية","stage":"دور المجموعات","team1":"تونس","flag1":"🇹🇳","team2":"اليابان","flag2":"🇯🇵","city":"مونتيري","stadium":"ملعب بي بي في إيه","country":"المكسيك","arab":true,"host":false},{"id":37,"date":"2026-06-21","time":"19:00","displayTime":"7:00 مساءً","group":"H","round":"الجولة الثانية","stage":"دور المجموعات","team1":"إسبانيا","flag1":"🇪🇸","team2":"السعودية","flag2":"🇸🇦","city":"أتلانتا","stadium":"ملعب مرسيدس بنز","country":"أمريكا","arab":true,"host":false},{"id":38,"date":"2026-06-21","time":"22:00","displayTime":"10:00 مساءً","group":"G","round":"الجولة الثانية","stage":"دور المجموعات","team1":"بلجيكا","flag1":"🇧🇪","team2":"إيران","flag2":"🇮🇷","city":"إنغلوود","stadium":"ملعب صوفي","country":"أمريكا","arab":false,"host":false},{"id":39,"date":"2026-06-22","time":"01:00","displayTime":"1:00 صباحاً","group":"H","round":"الجولة الثانية","stage":"دور المجموعات","team1":"الأوروغواي","flag1":"🇺🇾","team2":"الرأس الأخضر","flag2":"🇨🇻","city":"ميامي","stadium":"ملعب هارد روك","country":"أمريكا","arab":false,"host":false},{"id":40,"date":"2026-06-22","time":"04:00","displayTime":"4:00 صباحاً","group":"G","round":"الجولة الثانية","stage":"دور المجموعات","team1":"نيوزيلندا","flag1":"🇳🇿","team2":"مصر","flag2":"🇪🇬","city":"فانكوفر","stadium":"ملعب بي سي بليس","country":"كندا","arab":true,"host":false},{"id":41,"date":"2026-06-22","time":"20:00","displayTime":"8:00 مساءً","group":"J","round":"الجولة الثانية","stage":"دور المجموعات","team1":"الأرجنتين","flag1":"🇦🇷","team2":"النمسا","flag2":"🇦🇹","city":"أرلينغتون","stadium":"ملعب إيه تي آند تي","country":"أمريكا","arab":false,"host":false},{"id":42,"date":"2026-06-23","time":"00:00","displayTime":"12:00 صباحاً","group":"I","round":"الجولة الثانية","stage":"دور المجموعات","team1":"فرنسا","flag1":"🇫🇷","team2":"العراق","flag2":"🇮🇶","city":"فيلادلفيا","stadium":"ملعب لينكولن فاينانشال فيلد","country":"أمريكا","arab":true,"host":false},{"id":43,"date":"2026-06-23","time":"03:00","displayTime":"3:00 صباحاً","group":"I","round":"الجولة الثانية","stage":"دور المجموعات","team1":"النرويج","flag1":"🇳🇴","team2":"السنغال","flag2":"🇸🇳","city":"نيوجيرسي / شرق راذرفورد","stadium":"ملعب ميتلايف","country":"أمريكا","arab":false,"host":false},{"id":44,"date":"2026-06-23","time":"06:00","displayTime":"6:00 صباحاً","group":"J","round":"الجولة الثانية","stage":"دور المجموعات","team1":"الأردن","flag1":"🇯🇴","team2":"الجزائر","flag2":"🇩🇿","city":"سانتا كلارا","stadium":"ملعب ليفاي","country":"أمريكا","arab":true,"host":false},{"id":45,"date":"2026-06-23","time":"20:00","displayTime":"8:00 مساءً","group":"K","round":"الجولة الثانية","stage":"دور المجموعات","team1":"البرتغال","flag1":"🇵🇹","team2":"أوزبكستان","flag2":"🇺🇿","city":"هيوستن","stadium":"ملعب إن آر جي","country":"أمريكا","arab":false,"host":false},{"id":46,"date":"2026-06-23","time":"23:00","displayTime":"11:00 مساءً","group":"L","round":"الجولة الثانية","stage":"دور المجموعات","team1":"إنجلترا","flag1":"🏴","team2":"غانا","flag2":"🇬🇭","city":"فوكسبورو","stadium":"ملعب جيليت","country":"أمريكا","arab":false,"host":false},{"id":47,"date":"2026-06-24","time":"02:00","displayTime":"2:00 صباحاً","group":"L","round":"الجولة الثانية","stage":"دور المجموعات","team1":"بنما","flag1":"🇵🇦","team2":"كرواتيا","flag2":"🇭🇷","city":"تورونتو","stadium":"ملعب بي إم أو فيلد","country":"كندا","arab":false,"host":false},{"id":48,"date":"2026-06-24","time":"05:00","displayTime":"5:00 صباحاً","group":"K","round":"الجولة الثانية","stage":"دور المجموعات","team1":"كولومبيا","flag1":"🇨🇴","team2":"الكونغو الديمقراطية","flag2":"🇨🇩","city":"غوادالاخارا","stadium":"ملعب آكرون","country":"المكسيك","arab":false,"host":false},{"id":49,"date":"2026-06-24","time":"22:00","displayTime":"10:00 مساءً","group":"B","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"سويسرا","flag1":"🇨🇭","team2":"كندا","flag2":"🇨🇦","city":"فانكوفر","stadium":"ملعب بي سي بليس","country":"كندا","arab":false,"host":true},{"id":50,"date":"2026-06-24","time":"22:00","displayTime":"10:00 مساءً","group":"B","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"البوسنة والهرسك","flag1":"🇧🇦","team2":"قطر","flag2":"🇶🇦","city":"سياتل","stadium":"ملعب لومن فيلد","country":"أمريكا","arab":true,"host":false},{"id":51,"date":"2026-06-25","time":"01:00","displayTime":"1:00 صباحاً","group":"C","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"اسكتلندا","flag1":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","team2":"البرازيل","flag2":"🇧🇷","city":"ميامي","stadium":"ملعب هارد روك","country":"أمريكا","arab":false,"host":false},{"id":52,"date":"2026-06-25","time":"01:00","displayTime":"1:00 صباحاً","group":"C","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"المغرب","flag1":"🇲🇦","team2":"هايتي","flag2":"🇭🇹","city":"أتلانتا","stadium":"ملعب مرسيدس بنز","country":"أمريكا","arab":true,"host":false},{"id":53,"date":"2026-06-25","time":"04:00","displayTime":"4:00 صباحاً","group":"A","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"التشيك","flag1":"🇨🇿","team2":"المكسيك","flag2":"🇲🇽","city":"مكسيكو سيتي","stadium":"ملعب أزتيكا","country":"المكسيك","arab":false,"host":true},{"id":54,"date":"2026-06-25","time":"04:00","displayTime":"4:00 صباحاً","group":"A","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"جنوب أفريقيا","flag1":"🇿🇦","team2":"كوريا الجنوبية","flag2":"🇰🇷","city":"مونتيري","stadium":"ملعب بي بي في إيه","country":"المكسيك","arab":false,"host":false},{"id":55,"date":"2026-06-25","time":"23:00","displayTime":"11:00 مساءً","group":"E","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"الإكوادور","flag1":"🇪🇨","team2":"ألمانيا","flag2":"🇩🇪","city":"نيوجيرسي / شرق راذرفورد","stadium":"ملعب ميتلايف","country":"أمريكا","arab":false,"host":false},{"id":56,"date":"2026-06-25","time":"23:00","displayTime":"11:00 مساءً","group":"E","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"كوراساو","flag1":"🇨🇼","team2":"كوت ديفوار","flag2":"🇨🇮","city":"فيلادلفيا","stadium":"ملعب لينكولن فاينانشال فيلد","country":"أمريكا","arab":false,"host":false},{"id":57,"date":"2026-06-26","time":"02:00","displayTime":"2:00 صباحاً","group":"F","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"تونس","flag1":"🇹🇳","team2":"هولندا","flag2":"🇳🇱","city":"كانساس سيتي","stadium":"ملعب أروهيد","country":"أمريكا","arab":true,"host":false},{"id":58,"date":"2026-06-26","time":"02:00","displayTime":"2:00 صباحاً","group":"F","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"اليابان","flag1":"🇯🇵","team2":"السويد","flag2":"🇸🇪","city":"أرلينغتون","stadium":"ملعب إيه تي آند تي","country":"أمريكا","arab":false,"host":false},{"id":59,"date":"2026-06-26","time":"05:00","displayTime":"5:00 صباحاً","group":"D","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"الباراغواي","flag1":"🇵🇾","team2":"أستراليا","flag2":"🇦🇺","city":"سانتا كلارا","stadium":"ملعب ليفاي","country":"أمريكا","arab":false,"host":false},{"id":60,"date":"2026-06-26","time":"05:00","displayTime":"5:00 صباحاً","group":"D","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"تركيا","flag1":"🇹🇷","team2":"الولايات المتحدة","flag2":"🇺🇸","city":"إنغلوود","stadium":"ملعب صوفي","country":"أمريكا","arab":false,"host":true},{"id":61,"date":"2026-06-26","time":"22:00","displayTime":"10:00 مساءً","group":"I","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"النرويج","flag1":"🇳🇴","team2":"فرنسا","flag2":"🇫🇷","city":"فوكسبورو","stadium":"ملعب جيليت","country":"أمريكا","arab":false,"host":false},{"id":62,"date":"2026-06-26","time":"22:00","displayTime":"10:00 مساءً","group":"I","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"السنغال","flag1":"🇸🇳","team2":"العراق","flag2":"🇮🇶","city":"تورونتو","stadium":"ملعب بي إم أو فيلد","country":"كندا","arab":true,"host":false},{"id":63,"date":"2026-06-27","time":"03:00","displayTime":"3:00 صباحاً","group":"H","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"الأوروغواي","flag1":"🇺🇾","team2":"إسبانيا","flag2":"🇪🇸","city":"غوادالاخارا","stadium":"ملعب آكرون","country":"المكسيك","arab":false,"host":false},{"id":64,"date":"2026-06-27","time":"03:00","displayTime":"3:00 صباحاً","group":"H","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"الرأس الأخضر","flag1":"🇨🇻","team2":"السعودية","flag2":"🇸🇦","city":"هيوستن","stadium":"ملعب إن آر جي","country":"أمريكا","arab":true,"host":false},{"id":65,"date":"2026-06-27","time":"06:00","displayTime":"6:00 صباحاً","group":"G","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"مصر","flag1":"🇪🇬","team2":"إيران","flag2":"🇮🇷","city":"سياتل","stadium":"ملعب لومن فيلد","country":"أمريكا","arab":true,"host":false},{"id":66,"date":"2026-06-27","time":"06:00","displayTime":"6:00 صباحاً","group":"G","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"نيوزيلندا","flag1":"🇳🇿","team2":"بلجيكا","flag2":"🇧🇪","city":"فانكوفر","stadium":"ملعب بي سي بليس","country":"كندا","arab":false,"host":false},{"id":67,"date":"2026-06-28","time":"00:00","displayTime":"12:00 صباحاً","group":"L","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"بنما","flag1":"🇵🇦","team2":"إنجلترا","flag2":"🏴","city":"نيوجيرسي / شرق راذرفورد","stadium":"ملعب ميتلايف","country":"أمريكا","arab":false,"host":false},{"id":68,"date":"2026-06-28","time":"00:00","displayTime":"12:00 صباحاً","group":"L","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"كرواتيا","flag1":"🇭🇷","team2":"غانا","flag2":"🇬🇭","city":"فيلادلفيا","stadium":"ملعب لينكولن فاينانشال فيلد","country":"أمريكا","arab":false,"host":false},{"id":69,"date":"2026-06-28","time":"02:30","displayTime":"2:30 صباحاً","group":"K","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"كولومبيا","flag1":"🇨🇴","team2":"البرتغال","flag2":"🇵🇹","city":"ميامي","stadium":"ملعب هارد روك","country":"أمريكا","arab":false,"host":false},{"id":70,"date":"2026-06-28","time":"02:30","displayTime":"2:30 صباحاً","group":"K","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"الكونغو الديمقراطية","flag1":"🇨🇩","team2":"أوزبكستان","flag2":"🇺🇿","city":"أتلانتا","stadium":"ملعب مرسيدس بنز","country":"أمريكا","arab":false,"host":false},{"id":71,"date":"2026-06-28","time":"05:00","displayTime":"5:00 صباحاً","group":"J","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"الأردن","flag1":"🇯🇴","team2":"الأرجنتين","flag2":"🇦🇷","city":"أرلينغتون","stadium":"ملعب إيه تي آند تي","country":"أمريكا","arab":true,"host":false},{"id":72,"date":"2026-06-28","time":"05:00","displayTime":"5:00 صباحاً","group":"J","round":"الجولة الثالثة","stage":"دور المجموعات","team1":"الجزائر","flag1":"🇩🇿","team2":"النمسا","flag2":"🇦🇹","city":"كانساس سيتي","stadium":"ملعب أروهيد","country":"أمريكا","arab":true,"host":false}];
+const ARAB_TEAMS = new Set(["السعودية","مصر","المغرب","قطر","تونس","العراق","الأردن","الجزائر"]);
+
+let selectedDate = normalizeToAvailableDate(getRiyadhDateISO());
+
+function pad(n){return String(n).padStart(2,"0")}
+function getRiyadhParts(){
+  const parts = new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Riyadh",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+  const p={}; parts.forEach(x=>p[x.type]=x.value); return p;
+}
+function getRiyadhDateISO(){const p=getRiyadhParts(); return `${p.year}-${p.month}-${p.day}`}
+function updateClock(){const p=getRiyadhParts(); document.getElementById("clockText").textContent=`${p.hour}:${p.minute}`}
+function displayDate(dateISO, withYear=false){
+  const d = new Date(dateISO+"T12:00:00+03:00");
+  return new Intl.DateTimeFormat("ar-SA",{timeZone:"Asia/Riyadh",weekday:"long",day:"numeric",month:"long",...(withYear?{year:"numeric"}:{})}).format(d);
+}
+function shortDate(dateISO){
+  const d=new Date(dateISO+"T12:00:00+03:00");
+  return new Intl.DateTimeFormat("ar-SA",{timeZone:"Asia/Riyadh",day:"numeric",month:"short"}).format(d);
+}
+function dateList(){return [...new Set(LOCAL_MATCHES.map(m=>m.date))].sort()}
+function normalizeToAvailableDate(dateISO){
+  const dates=dateList();
+  if(dates.includes(dateISO)) return dateISO;
+  const upcoming=dates.find(d=>d>=dateISO);
+  return upcoming || dates[dates.length-1];
+}
+function isoDateTime(m){return new Date(`${m.date}T${m.time}:00+03:00`)}
+function matchStatus(m){
+  const now=new Date(); const start=isoDateTime(m); const mins=(start-now)/60000;
+  if(mins > 45) return {label:"قادمة", cls:"soon"};
+  if(mins > -150) return {label:"مباشرة تقريباً", cls:"live"};
+  return {label:"انتهت حسب الوقت", cls:"done"};
+}
+function countdown(m){
+  const diff=isoDateTime(m)-new Date();
+  if(diff<=0) return "";
+  const h=Math.floor(diff/3600000), mi=Math.floor((diff%3600000)/60000);
+  if(h>24){const d=Math.floor(h/24); return `بعد ${d} يوم`}
+  if(h>0) return `بعد ${h}س ${mi}د`;
+  return `بعد ${mi}د`;
+}
+function renderDatebar(){
+  const bar=document.getElementById("datebar"); const dates=dateList();
+  bar.innerHTML = dates.map(d=>{
+    const c=LOCAL_MATCHES.filter(m=>m.date===d).length;
+    return `<button class="daychip ${d===selectedDate?'active':''}" onclick="selectDate('${d}')">${shortDate(d)}<small>${c} مباريات</small></button>`;
+  }).join("");
+  document.getElementById("datePicker").value=selectedDate;
+  setTimeout(()=>bar.querySelector(".active")?.scrollIntoView({inline:"center",block:"nearest"}),50);
+}
+function matchCard(m, showDate=false, apiScore=null){
+  const st=matchStatus(m); const cd=countdown(m);
+  const score = apiScore ? `<div class="score">${apiScore}</div>` : `<div class="vs">VS</div>`;
+  return `<article class="matchCard ${m.arab?'arab':''} ${st.cls==='live'?'live':''}">
+    <div class="meta">
+      <span class="tag">#${m.id} · المجموعة ${m.group} · ${m.round}${showDate?' · '+displayDate(m.date):''}</span>
+      <span class="badge ${st.cls}">${st.cls==='live'?'<span class="pulse"></span>':''}${apiScore?'نتيجة':st.label}</span>
+    </div>
+    <div class="teams">
+      <div class="team"><div class="flag">${m.flag1}</div><div class="name">${m.team1}</div>${ARAB_TEAMS.has(m.team1)?'<div class="note">منتخب عربي</div>':''}</div>
+      <div class="center">${score}<div style="font-size:11px;color:var(--muted);margin-top:7px;font-weight:800">${m.displayTime}</div>${cd?`<div style="font-size:10px;color:var(--gold2);margin-top:4px;font-weight:900">${cd}</div>`:''}</div>
+      <div class="team"><div class="flag">${m.flag2}</div><div class="name">${m.team2}</div>${ARAB_TEAMS.has(m.team2)?'<div class="note">منتخب عربي</div>':''}</div>
+    </div>
+    <div class="venue">🏟 <strong>${m.stadium}</strong> · ${m.city} — ${m.country}</div>
+  </article>`;
+}
+function renderToday(){
+  const list=document.getElementById("todayList");
+  const matches=LOCAL_MATCHES.filter(m=>m.date===selectedDate);
+  const title = selectedDate===getRiyadhDateISO() ? "مباريات اليوم" : "مباريات التاريخ المحدد";
+  document.getElementById("todayTitle").textContent=title;
+  document.getElementById("todaySub").textContent=displayDate(selectedDate,true);
+  document.getElementById("todayCount").textContent=LOCAL_MATCHES.filter(m=>m.date===getRiyadhDateISO()).length || 0;
+  if(matches.length){
+    list.innerHTML=matches.map(m=>matchCard(m)).join("");
+    document.getElementById("nextBlock").innerHTML="";
+  }else{
+    list.innerHTML=`<div class="empty">لا توجد مباريات في هذا التاريخ ضمن جدول المجموعات.</div>`;
+    const next=LOCAL_MATCHES.find(m=>m.date>selectedDate);
+    document.getElementById("nextBlock").innerHTML=next?`<div class="sectionTitle"><h2>أقرب مباراة قادمة</h2><p>${displayDate(next.date,true)}</p></div><div class="matchList">${matchCard(next,true)}</div>`:"";
+  }
+}
+function renderSchedule(){
+  const root=document.getElementById("scheduleList");
+  const byDate = {};
+  LOCAL_MATCHES.forEach(m=>{(byDate[m.date] ||= []).push(m)});
+  root.innerHTML = Object.keys(byDate).sort().map(d=>{
+    const cards=byDate[d].map(m=>matchCard(m)).join("");
+    return `<div style="margin-bottom:20px"><div class="sectionTitle" style="margin-top:2px"><h2>${displayDate(d)}</h2><p>${byDate[d].length} مباريات</p></div>${cards}</div>`;
+  }).join("");
+}
+function selectDate(d){selectedDate=d; renderDatebar(); renderToday();}
+function goToday(){selectedDate=normalizeToAvailableDate(getRiyadhDateISO()); renderDatebar(); renderToday();}
+document.getElementById("datePicker").addEventListener("change", e=>{selectedDate=normalizeToAvailableDate(e.target.value); renderDatebar(); renderToday();});
+
+function showView(id, btn){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.getElementById("view-"+id).classList.add("active"); btn.classList.add("active");
+  if(id==="schedule" && !document.getElementById("scheduleList").innerHTML) renderSchedule();
+  if(id==="live") renderApiStatus();
+  if(id==="settings") renderApiStatus();
+}
+
+function getApiSettings(){
+  return {base:(localStorage.getItem("wc_api_base")||"").replace(/\/$/,""), key:localStorage.getItem("wc_api_key")||""}
+}
+function renderApiStatus(){
+  const s=getApiSettings();
+  const el=document.getElementById("apiStatus");
+  if(!el) return;
+  el.innerHTML = s.key ? `✅ تم حفظ API Key. ${s.base ? "الرابط: "+s.base : "الرابط فارغ: سيتم استخدام نفس الدومين إذا كان الملف مستضافاً."}` : `ℹ️ لم يتم إدخال API Key بعد. الجدول يعمل محلياً، لكن النتائج المباشرة غير مفعلة.`;
+  document.getElementById("apiBase").value=s.base;
+  document.getElementById("apiKey").value=s.key;
+}
+function saveApi(){
+  localStorage.setItem("wc_api_base", document.getElementById("apiBase").value.trim().replace(/\/$/,""));
+  localStorage.setItem("wc_api_key", document.getElementById("apiKey").value.trim());
+  renderApiStatus(); refreshLive();
+}
+function clearApi(){localStorage.removeItem("wc_api_base");localStorage.removeItem("wc_api_key");renderApiStatus();document.getElementById("liveBox").textContent="تم مسح إعدادات API."}
+function apiUrl(endpoint, params={}){
+  const {base,key}=getApiSettings();
+  const originBase = base || (location.protocol.startsWith("http") ? "" : null);
+  if(!originBase && !base) throw new Error("NO_BASE_FOR_FILE");
+  if(!key) throw new Error("NO_KEY");
+  const url = new URL((originBase || base) + endpoint, location.href);
+  url.searchParams.set("key", key);
+  url.searchParams.set("lang", "ar");
+  Object.entries(params).forEach(([k,v])=>{if(v!==undefined && v!==null && v!=="") url.searchParams.set(k,v)});
+  return url.toString();
+}
+function unwrapList(raw){
+  if(Array.isArray(raw)) return raw;
+  for(const k of ["data","matches","fixtures","results","response","scores","livescores"]){
+    if(Array.isArray(raw?.[k])) return raw[k];
+    if(Array.isArray(raw?.[k]?.data)) return raw[k].data;
+  }
+  return [];
+}
+function teamName(obj, side){
+  return obj?.[side+"_team"] || obj?.[side+"Team"] || obj?.[side]?.name || obj?.teams?.[side]?.name || obj?.[side]?.team_name || "";
+}
+function scoreText(obj){
+  const hs = obj.home_score ?? obj.homeScore ?? obj.score?.home ?? obj.goals?.home ?? obj.home?.score;
+  const as = obj.away_score ?? obj.awayScore ?? obj.score?.away ?? obj.goals?.away ?? obj.away?.score;
+  if(hs!==undefined && as!==undefined) return `${hs} - ${as}`;
+  return obj.score || obj.result || "";
+}
+async function refreshLive(){
+  const box=document.getElementById("liveBox");
+  box.innerHTML=`<div class="liveHeader"><b><span class="loader">⚽</span> جاري جلب النتائج...</b><span>Live Scores</span></div>`;
+  try{
+    const url=apiUrl("/livescores");
+    const r=await fetch(url);
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const raw=await r.json();
+    const list=unwrapList(raw);
+    if(!list.length){box.innerHTML=`<b>لا توجد مباريات مباشرة الآن.</b><br>تم الاتصال بالـAPI بنجاح، لكن لم يرجع مباريات جارية.`;return}
+    box.innerHTML = `<div class="liveHeader"><b><span class="pulse"></span> نتائج مباشرة</b><span>${list.length} مباراة</span></div>` + list.map(x=>{
+      const home=teamName(x,"home") || x.team1 || x.home || "الفريق الأول";
+      const away=teamName(x,"away") || x.team2 || x.away || "الفريق الثاني";
+      const score=scoreText(x) || "—";
+      const status=x.status || x.match_status || x.time || "";
+      return `<div style="padding:12px;border-top:1px solid rgba(255,255,255,.08)"><b>${home}</b> <span style="color:var(--gold2);font-weight:900">${score}</span> <b>${away}</b><br><span style="color:var(--muted);font-size:12px">${status}</span></div>`
+    }).join("");
+  }catch(e){
+    const msg = e.message==="NO_KEY" ? "أدخل API Key من الإعدادات لتفعيل النتائج المباشرة." :
+      e.message==="NO_BASE_FOR_FILE" ? "لأن الملف مفتوح مباشرة من الجوال، أضف API Base URL كامل في الإعدادات." :
+      "تعذر الاتصال بالـAPI. تأكد من الرابط، المفتاح، وأن الـAPI يسمح بالاتصال من المتصفح CORS.";
+    box.innerHTML=`<b>⚠️ النتائج المباشرة غير متاحة حالياً</b><br>${msg}<br><small style="color:var(--muted)">الجدول المحلي سيبقى يعمل بدون إنترنت.</small>`;
+  }
+}
+
+renderDatebar(); renderToday(); updateClock(); renderApiStatus();
+setInterval(updateClock,30000);
+setInterval(()=>{ if(getApiSettings().key && document.getElementById("view-live").classList.contains("active")) refreshLive(); },60000);
+</script>
+</body>
+</html>
