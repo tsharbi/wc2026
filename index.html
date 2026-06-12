@@ -357,6 +357,18 @@ async function refreshLive(){
 renderDatebar(); renderToday(); updateClock(); renderApiStatus();
 setInterval(updateClock,30000);
 setInterval(()=>{ if(getApiSettings().key && document.getElementById("view-live").classList.contains("active")) refreshLive(); },60000);
+  let lastKnownDate = getRiyadhDateISO();
+
+setInterval(() => {
+  const currentDate = getRiyadhDateISO();
+
+  if (currentDate !== lastKnownDate) {
+    lastKnownDate = currentDate;
+    selectedDate = normalizeToAvailableDate(currentDate);
+    renderDatebar();
+    renderToday();
+  }
+}, 60000);
 </script>
 </body>
 </html>
